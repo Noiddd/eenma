@@ -24,7 +24,8 @@ export default function SignInForm({ className, ...props }) {
       const { data, error } = supabase.auth.signInWithOAuth({
         provider,
         options: {
-          redirectTo: location.origin + "/auth/callback?next=/analytics",
+          redirectTo:
+            location.origin + "/auth/callback?next=/platform/analytics",
         },
       });
 
@@ -45,7 +46,8 @@ export default function SignInForm({ className, ...props }) {
         email,
         options: {
           shouldCreateUser: true,
-          emailRedirectTo: location.origin + "/auth/callback?next=/analytics",
+          emailRedirectTo:
+            location.origin + "/auth/callback?next=/platform/analytics",
         },
       });
 

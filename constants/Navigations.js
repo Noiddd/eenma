@@ -1,18 +1,18 @@
 export const navigations = [
   {
     value: "Analytics",
-    href: "/analytics",
+    href: "/platform/analytics",
   },
   {
     value: "Schedule",
-    href: "/schedule/month",
+    href: "/platform/schedule/month",
   },
   {
     value: "Media",
-    href: "/media",
+    href: "/platform/media",
   },
   {
     value: "Inbox",
-    href: "/inbox",
+    href: "/paltform/inbox",
   },
 ];

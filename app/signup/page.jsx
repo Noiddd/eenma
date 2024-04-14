@@ -2,14 +2,14 @@ import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 import SignUpForm from "@/components/signup/SignUpForm";
-import useUserSession from "@/hooks/useUserSession";
+import useUser from "@/hooks/useUser";
 import { redirect } from "next/navigation";
 
 export default async function SignUp() {
-  const { data } = await useUserSession();
+  const { data } = await useUser();
 
   if (data.user) {
-    return redirect("/analytics");
+    return redirect("/platform/analytics");
   }
   return (
     <>

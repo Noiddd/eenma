@@ -2,8 +2,8 @@
 
 import SupabaseServer from "@/lib/supabase/SupabaseServer";
 
-export default async function useUserSession() {
+export default async function useUser() {
   const supabase = await SupabaseServer();
 
-  return supabase.auth.getSession();
+  return supabase.auth.getUser();
 }

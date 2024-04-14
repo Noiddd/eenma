@@ -1,63 +1,65 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../ui/button";
 import SupabaseBrowser from "@/lib/supabase/SupabaseBrowser";
 
 export default function SetUpGoogle() {
+  const [isLoading, setIsLoading] = useState(false);
   const supabase = SupabaseBrowser();
 
-  const onSetUp = async (provider) => {
+  supabase.auth.onAuthStateChange((event, session) => {
+    console.log("OAUTH SESSION");
+    console.log(session);
+    if (session && session.provider_token) {
+      window.localStorage.setItem(
+        "oauth_provider_token",
+        session.provider_token
+      );
+    }
+
+    if (session && session.provider_refresh_token) {
+      window.localStorage.setItem(
+        "oauth_provider_refresh_token",
+        session.provider_refresh_token
+      );
+    }
+
+    if (event === "SIGNED_OUT") {
+      window.localStorage.removeItem("oauth_provider_token");
+      window.localStorage.removeItem("oauth_provider_refresh_token");
+    }
+  });
+
+  const onSetUp = async () => {
     setIsLoading(true);
 
-    if (provider == "google") {
-      const { data, error } = supabase.auth.signInWithOAuth({
-        provider,
-        options: {
-          queryParams: {
-            access_type: "offline",
-            prompt: "consent",
-            scope: [
-              "openid",
-              "https://www.googleapis.com/auth/userinfo.email",
-              "https://www.googleapis.com/auth/userinfo.profile",
-              "https://www.googleapis.com/auth/yt-analytics.readonly",
-              "https://www.googleapis.com/auth/youtube",
-              "https://www.googleapis.com/auth/youtube.readonly",
-              "https://www.googleapis.com/auth/youtubepartner",
-              "https://www.googleapis.com/auth/yt-analytics-monetary.readonly",
-            ].join(" "),
-          },
-          redirectTo: location.origin + "/auth/callback?next=/analytics",
+    const { data, error } = supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        queryParams: {
+          access_type: "offline",
+          prompt: "consent",
+          scope: [
+            "openid",
+            "https://www.googleapis.com/auth/userinfo.email",
+            "https://www.googleapis.com/auth/userinfo.profile",
+            "https://www.googleapis.com/auth/yt-analytics.readonly",
+            "https://www.googleapis.com/auth/youtube",
+            "https://www.googleapis.com/auth/youtube.readonly",
+            "https://www.googleapis.com/auth/youtubepartner",
+            "https://www.googleapis.com/auth/yt-analytics-monetary.readonly",
+          ].join(" "),
         },
-      });
+        redirectTo: location.origin + "/auth/callback?next=/platform/analytics",
+      },
+    });
 
-      console.log("login data");
-      console.log(data);
-      console.log(error);
+    console.log("login data");
+    console.log(data);
+    console.log(error);
 
-      setIsLoading(false);
-    }
-
-    if (provider == "email") {
-      if (email == "") {
-        setIsLoading(false);
-        return;
-      }
-
-      const { data, error } = await supabase.auth.signInWithOtp({
-        email,
-        options: {
-          shouldCreateUser: true,
-          emailRedirectTo: location.origin + "/auth/callback?next=/analytics",
-        },
-      });
-
-      console.log(data);
-      console.log(error);
-
-      setIsLoading(false);
-    }
+    setIsLoading(false);
   };
 
   return (
