@@ -11,6 +11,7 @@ export default function SetUpGoogle() {
   supabase.auth.onAuthStateChange((event, session) => {
     console.log("OAUTH SESSION");
     console.log(session);
+
     if (session && session.provider_token) {
       window.localStorage.setItem(
         "oauth_provider_token",
@@ -23,11 +24,6 @@ export default function SetUpGoogle() {
         "oauth_provider_refresh_token",
         session.provider_refresh_token
       );
-    }
-
-    if (event === "SIGNED_OUT") {
-      window.localStorage.removeItem("oauth_provider_token");
-      window.localStorage.removeItem("oauth_provider_refresh_token");
     }
   });
 

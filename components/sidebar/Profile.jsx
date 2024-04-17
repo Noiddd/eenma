@@ -34,6 +34,9 @@ export default function Profile({ userData }) {
   const handleLogOut = async (e) => {
     e.preventDefault();
 
+    window.localStorage.removeItem("oauth_provider_token");
+    window.localStorage.removeItem("oauth_provider_refresh_token");
+
     const { error } = await supabase.auth.signOut();
 
     if (error) {

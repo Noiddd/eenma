@@ -8,8 +8,6 @@ import { Calendar, LayoutDashboard, Mail, Image } from "lucide-react";
 
 export default function NavLink({ href, value, ...props }) {
   let pathname = usePathname();
-  console.log(href);
-  console.log(pathname);
 
   if (pathname == "/schedule/month" || pathname == "/schedule/week") {
     pathname = "/schedule/month";

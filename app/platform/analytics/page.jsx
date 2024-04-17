@@ -8,10 +8,10 @@ export default async function Analytics() {
   const { data: user } = await useUser();
   const { data: session } = await useUserSession();
 
-  console.log("USER");
-  console.log(user);
-  console.log("session");
-  console.log(session);
+  // console.log("USER");
+  // console.log(user);
+  // console.log("session");
+  // console.log(session);
 
   if (!user.user) {
     return redirect("/");
