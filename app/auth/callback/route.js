@@ -20,7 +20,13 @@ export async function GET(request) {
             return cookieStore.get(name)?.value;
           },
           set(name, value, options) {
-            cookieStore.set({ name, value, ...options });
+            cookieStore.set({
+              name,
+              value,
+              provider_token: value.provider_token,
+              provider_refresh_token: value.provider_refresh_token,
+              ...options,
+            });
           },
           remove(name, options) {
             cookieStore.delete({ name, ...options });
@@ -29,6 +35,7 @@ export async function GET(request) {
       }
     );
     const { error } = await supabase.auth.exchangeCodeForSession(code);
+
     if (!error) {
       return NextResponse.redirect(`${origin}${next}`);
     } else {

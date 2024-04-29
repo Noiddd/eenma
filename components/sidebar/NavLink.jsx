@@ -36,7 +36,7 @@ export default function NavLink({ href, value, ...props }) {
           />
         )}
 
-        {value == "Media" && (
+        {value == "Content" && (
           <Image
             strokeWidth={2.5}
             className={`h-4 w-4  hover:text-black dark:hover:text-white cursor-default ${

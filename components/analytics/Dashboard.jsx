@@ -3,9 +3,15 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import { Button } from "../ui/button";
-import SupabaseBrowser from "@/lib/supabase/SupabaseBrowser";
 import { getStats } from "@/lib/functions/getStats";
+import SubscribersChart from "./charts/SubscribersChart";
+import ViewsChart from "./charts/ViewsChart";
+import WatchTimeChart from "./charts/WatchTimeChart";
+import ImpressionChart from "./charts/ImpressionChart";
+import RevenueChart from "./charts/RevenueChart";
+import TrafficSourceChart from "./charts/TrafficSourceChart";
+import ContentChart from "./charts/ContentChart";
+import AnalyticsHeader from "./AnalyticsHeader";
 
 export default function Dashboard({ session }) {
   if (
@@ -27,9 +33,21 @@ export default function Dashboard({ session }) {
     );
   }
 
+  if (
+    session &&
+    session.expires_in &&
+    window.localStorage.getItem("expires_in") == null
+  ) {
+    window.localStorage.setItem(
+      "expires_in",
+      Date.now() + Number(session.expires_in) * 1000
+    );
+  }
+
   console.log("SESSION DATA");
   console.log(session);
-  const supabase = SupabaseBrowser();
+  // console.log(Date.now() + Number(session.expires_in) * 1000);
+  // console.log(Number(session.expires_at));
 
   const { data, isPending, isError, isSuccess } = useQuery({
     queryKey: ["analytics"],
@@ -40,37 +58,27 @@ export default function Dashboard({ session }) {
   console.log("fetch data");
   console.log(data);
 
-  const test = async () => {
-    const refreshToken = window.localStorage.getItem(
-      "oauth_provider_refresh_token"
-    );
-
-    console.log("REFRESH TOKEN");
-    console.log(refreshToken);
-
-    const { data, error } = await supabase.auth.refreshSession();
-    const { session, user } = data;
-
-    if (session) {
-      window.localStorage.removeItem("oauth_provider_token");
-      window.localStorage.removeItem("oauth_provider_refresh_token");
-
-      window.localStorage.setItem(
-        "oauth_provider_refresh_token",
-        session.refresh_token
-      );
-
-      window.localStorage.setItem("oauth_provider_token", session.access_token);
-    }
-
-    console.log("NEW SESSION");
-    console.log(session);
-    console.log(user);
-  };
-
   return (
-    <div className="ml-96">
-      <Button onClick={test}>Refresh token</Button>
+    <div className="px-72 pt-24">
+      <div>
+        <AnalyticsHeader />
+      </div>
+
+      <div className="flex gap-3 justify-center">
+        <SubscribersChart />
+        <ViewsChart />
+        <WatchTimeChart />
+        <ImpressionChart />
+      </div>
+
+      <div className="mt-[12px] flex gap-3">
+        <RevenueChart />
+        <TrafficSourceChart />
+      </div>
+
+      <div className="mt-[12px] flex gap-3">
+        <ContentChart />
+      </div>
     </div>
   );
 }
