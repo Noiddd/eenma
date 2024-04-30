@@ -2,49 +2,37 @@ import { Card, CardContent } from "@/components/ui/card";
 
 import { TrendingUp } from "lucide-react";
 import { AreaChart, Area, Tooltip, ResponsiveContainer } from "recharts";
+import { AreaChartToolTip } from "../tooltip/AreaChartToolTip";
 
 const data = [
   {
-    name: "Page A",
+    name: "Apr 24, 2024",
     uv: 2146,
-    pv: 2400,
-    amt: 2400,
   },
   {
-    name: "Page B",
+    name: "Apr 25, 2024",
     uv: 3000,
-    pv: 1398,
-    amt: 2210,
   },
   {
-    name: "Page C",
+    name: "Apr 26, 2024",
     uv: 2000,
-    pv: 9800,
-    amt: 2290,
   },
   {
-    name: "Page D",
+    name: "Apr 27, 2024",
     uv: 2780,
-    pv: 3908,
-    amt: 2000,
   },
   {
-    name: "Page E",
+    name: "Apr 28, 2024",
     uv: 3890,
-    pv: 4800,
-    amt: 2181,
   },
+
   {
-    name: "Page F",
+    name: "Yesterday",
     uv: 4290,
-    pv: 3800,
-    amt: 2500,
   },
   {
-    name: "Page G",
+    name: "Today",
     uv: 5400,
-    pv: 4300,
-    amt: 2100,
   },
 ];
 
@@ -52,10 +40,10 @@ export default function SubscribersChart() {
   return (
     <Card className="h-48 sm:h-40">
       <div className="flex-col gap-10 px-6">
-        <div className="text-xs">Subscribers</div>
+        <div className="text-xs font-semibold">Subscribers</div>
         <div className="flex-col gap-10 ">
           <div className="flex gap-3 mt-2 justify-start items-center">
-            <div className="2xl:text-4xl text-3xl  font-semibold">102,212</div>
+            <div className="2xl:text-4xl text-3xl font-semibold">102,212</div>
             <div className="flex items-center gap-1 font-bold rounded-md text-xs text-green-600">
               <TrendingUp className="w-3 h-3" strokeWidth={3} />
               12%
@@ -75,7 +63,7 @@ export default function SubscribersChart() {
               bottom: 90,
             }}
           >
-            <Tooltip cursor={false} />
+            <Tooltip cursor={false} content={<AreaChartToolTip />} />
             <Area
               type="monotone"
               dataKey="uv"

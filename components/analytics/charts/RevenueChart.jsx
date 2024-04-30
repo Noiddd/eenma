@@ -1,74 +1,59 @@
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  BarChart,
-  Bar,
-  Cell,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import { Card } from "@/components/ui/card";
+import { BarChart, Bar, XAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 const data = [
   {
-    name: "Page A",
+    name: "Nov",
     uv: 4000,
     pv: 2400,
     amt: 2400,
   },
   {
-    name: "Page B",
+    name: "Dec",
     uv: 3000,
     pv: 1398,
     amt: 2210,
   },
   {
-    name: "Page C",
+    name: "Jan",
     uv: 2000,
     pv: 9800,
     amt: 2290,
   },
   {
-    name: "Page D",
+    name: "Feb",
     uv: 2780,
     pv: 3908,
     amt: 2000,
   },
   {
-    name: "Page E",
+    name: "Mar",
     uv: 1890,
     pv: 4800,
     amt: 2181,
   },
   {
-    name: "Page F",
+    name: "Apr",
     uv: 2390,
     pv: 3800,
     amt: 2500,
   },
 ];
 
-const customizedGroupTick = (props) => {
-  const { index, x, y, payload } = props;
-
-  return <div>month</div>;
-};
-
 export default function RevenueChart() {
   return (
-    <Card className="h-96">
-      <ResponsiveContainer width="100%" height="100%">
+    <Card className="h-96 flex flex-col gap-5">
+      <div className="text-sm font-semibold px-10">Revenue</div>
+      <ResponsiveContainer width="100%" height="90%">
         <BarChart
           width={500}
           height={300}
           data={data}
           margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
+            top: 0,
+            right: 5,
+            left: 5,
+            bottom: 0,
           }}
           barSize={20}
         >
@@ -77,12 +62,10 @@ export default function RevenueChart() {
             padding={{ left: 10, right: 10 }}
             axisLine={false}
             tickLine={false}
-            scale="band"
             interval={0}
-            tick={customizedGroupTick}
           />
           <Tooltip cursor={false} />
-          <Bar dataKey="uv" fill="#bdd5fa" radius={[10, 10, 10, 10]} />
+          <Bar dataKey="uv" fill="#F5F5F5" radius={[6, 6, 6, 6]} />
         </BarChart>
       </ResponsiveContainer>
     </Card>

@@ -1,4 +1,4 @@
-import { Card } from "@tremor/react";
+import { Card } from "@/components/ui/card";
 import React from "react";
 
 export default function ContentChart() {

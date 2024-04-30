@@ -59,7 +59,7 @@ export default function Dashboard({ session }) {
   console.log(data);
 
   return (
-    <div className="px-72 pt-24">
+    <div className="px-72 pt-14 2xl:px-96">
       <div>
         <AnalyticsHeader />
       </div>
