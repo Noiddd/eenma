@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { TrendingDown } from "lucide-react";
 import { AreaChart, Area, Tooltip, ResponsiveContainer } from "recharts";
+import { ImpressionToolTip } from "../tooltip/ImpressionToolTop";
 
 const data = [
   {
@@ -51,7 +52,9 @@ export default function ImpressionChart() {
   return (
     <Card className="h-48 sm:h-40">
       <div className="flex-col gap-10 px-6">
-        <div className="text-xs font-semibold">Impression</div>
+        <div className="text-xs font-semibold flex gap-2 items-center">
+          Impression
+        </div>
         <div className="flex-col gap-10 ">
           <div className="flex gap-3 mt-2 justify-start items-center">
             <div className="2xl:text-4xl text-3xl  font-semibold">122,222</div>
@@ -74,7 +77,7 @@ export default function ImpressionChart() {
               bottom: 90,
             }}
           >
-            <Tooltip cursor={false} />
+            <Tooltip cursor={false} content={<ImpressionToolTip />} />
             <Area
               type="monotone"
               dataKey="uv"

@@ -17,9 +17,5 @@ export default async function Analytics() {
     return redirect("/");
   }
 
-  return (
-    <div>
-      <Dashboard session={session.session} />
-    </div>
-  );
+  return <Dashboard session={session.session} />;
 }

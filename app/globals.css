@@ -76,10 +76,7 @@
 }
 
 html,
-body,
 :root {
   height: 100%;
-  /* width: calc(100vw - 34px); */
-  width: 100vw;
-  overflow-x: hidden;
+  width: 100%;
 }

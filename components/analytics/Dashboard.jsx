@@ -76,9 +76,9 @@ export default function Dashboard({ session }) {
         <TrafficSourceChart />
       </div>
 
-      <div className="mt-[12px] flex gap-3">
+      {/* <div className="mt-[12px] flex gap-3">
         <ContentChart />
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -1,10 +1,47 @@
 import { Card } from "@/components/ui/card";
 import { BarChart, Bar, XAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { RevenueToolTip } from "../tooltip/RevenueToolTip";
 
 const data = [
   {
-    name: "Nov",
+    name: "May",
+    uv: 1000,
+    pv: 2400,
+    amt: 2400,
+  },
+  {
+    name: "June",
+    uv: 2000,
+    pv: 2400,
+    amt: 2400,
+  },
+  {
+    name: "Jul",
+    uv: 4300,
+    pv: 2400,
+    amt: 2400,
+  },
+  {
+    name: "Aug",
+    uv: 3000,
+    pv: 2400,
+    amt: 2400,
+  },
+  {
+    name: "Sep",
+    uv: 6000,
+    pv: 2400,
+    amt: 2400,
+  },
+  {
+    name: "Oct",
     uv: 4000,
+    pv: 2400,
+    amt: 2400,
+  },
+  {
+    name: "Nov",
+    uv: 5000,
     pv: 2400,
     amt: 2400,
   },
@@ -42,8 +79,10 @@ const data = [
 
 export default function RevenueChart() {
   return (
-    <Card className="h-96 flex flex-col gap-5">
-      <div className="text-sm font-semibold px-10">Revenue</div>
+    <div className="h-96 flex flex-col gap-5 rounded-2xl border bg-card text-card-foreground shadow-sm pt-6 w-4/6">
+      <div className="text-sm font-semibold px-6 flex gap-2 items-center">
+        Revenue
+      </div>
       <ResponsiveContainer width="100%" height="90%">
         <BarChart
           width={500}
@@ -57,6 +96,12 @@ export default function RevenueChart() {
           }}
           barSize={20}
         >
+          <defs>
+            <linearGradient id="revenue" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="40%" stopColor="#88d2dd" stopOpacity={1} />
+              <stop offset="100%" stopColor="#88d2dd" stopOpacity={0} />
+            </linearGradient>
+          </defs>
           <XAxis
             dataKey="name"
             padding={{ left: 10, right: 10 }}
@@ -64,10 +109,10 @@ export default function RevenueChart() {
             tickLine={false}
             interval={0}
           />
-          <Tooltip cursor={false} />
-          <Bar dataKey="uv" fill="#F5F5F5" radius={[6, 6, 6, 6]} />
+          <Tooltip cursor={false} content={<RevenueToolTip />} />
+          <Bar dataKey="uv" fill="url(#revenue)" radius={[6, 6, 6, 6]} />
         </BarChart>
       </ResponsiveContainer>
-    </Card>
+    </div>
   );
 }

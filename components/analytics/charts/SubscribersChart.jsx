@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 import { TrendingUp } from "lucide-react";
 import { AreaChart, Area, Tooltip, ResponsiveContainer } from "recharts";
-import { AreaChartToolTip } from "../tooltip/AreaChartToolTip";
+import { SubscribersToolTip } from "../tooltip/SubscribersToolTip";
 
 const data = [
   {
@@ -40,7 +40,9 @@ export default function SubscribersChart() {
   return (
     <Card className="h-48 sm:h-40">
       <div className="flex-col gap-10 px-6">
-        <div className="text-xs font-semibold">Subscribers</div>
+        <div className="text-xs font-semibold flex gap-2 items-center">
+          Subscribers
+        </div>
         <div className="flex-col gap-10 ">
           <div className="flex gap-3 mt-2 justify-start items-center">
             <div className="2xl:text-4xl text-3xl font-semibold">102,212</div>
@@ -63,7 +65,7 @@ export default function SubscribersChart() {
               bottom: 90,
             }}
           >
-            <Tooltip cursor={false} content={<AreaChartToolTip />} />
+            <Tooltip cursor={false} content={<SubscribersToolTip />} />
             <Area
               type="monotone"
               dataKey="uv"
