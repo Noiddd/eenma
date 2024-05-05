@@ -12,6 +12,9 @@ import RevenueChart from "./charts/RevenueChart";
 import TrafficSourceChart from "./charts/TrafficSourceChart";
 import ContentChart from "./charts/ContentChart";
 import AnalyticsHeader from "./AnalyticsHeader";
+import CPMChart from "./charts/CPMChart";
+import { Engagement } from "next/font/google";
+import EngagementChart from "./charts/EngagementChart";
 
 export default function Dashboard({ session }) {
   if (
@@ -59,7 +62,7 @@ export default function Dashboard({ session }) {
   console.log(data);
 
   return (
-    <div className="px-72 pt-14 2xl:px-96">
+    <div className="px-72 pt-14 2xl:px-96 flex flex-col gap-3">
       <div>
         <AnalyticsHeader />
       </div>
@@ -71,9 +74,19 @@ export default function Dashboard({ session }) {
         <ImpressionChart />
       </div>
 
-      <div className="mt-[12px] flex gap-3">
-        <RevenueChart />
-        <TrafficSourceChart />
+      <div className="flex gap-3 h-full">
+        <div className="flex flex-col w-4/6 h-[500px] gap-3">
+          <EngagementChart />
+
+          <div className="flex gap-3 h-1/3">
+            <RevenueChart />
+            <CPMChart />
+          </div>
+        </div>
+
+        <div className="w-2/6 h-[500px]">
+          <TrafficSourceChart />
+        </div>
       </div>
 
       {/* <div className="mt-[12px] flex gap-3">

@@ -4,7 +4,13 @@ import React from "react";
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Calendar, LayoutDashboard, Mail, Image } from "lucide-react";
+import {
+  Calendar,
+  LayoutDashboard,
+  Mail,
+  Image,
+  PencilRuler,
+} from "lucide-react";
 
 export default function NavLink({ href, value, ...props }) {
   let pathname = usePathname();
@@ -20,6 +26,15 @@ export default function NavLink({ href, value, ...props }) {
       <Link href={href} className="peer">
         {value == "Analytics" && (
           <LayoutDashboard
+            strokeWidth={2.5}
+            className={`h-4 w-4 hover:text-black dark:hover:text-white cursor-default ${
+              isActive ? "dark:text-white text-black" : "text-muted-foreground"
+            }`}
+          />
+        )}
+
+        {value == "Tools" && (
+          <PencilRuler
             strokeWidth={2.5}
             className={`h-4 w-4 hover:text-black dark:hover:text-white cursor-default ${
               isActive ? "dark:text-white text-black" : "text-muted-foreground"
@@ -55,7 +70,7 @@ export default function NavLink({ href, value, ...props }) {
         )}
       </Link>
       <div
-        className={`transition delay-500 duration-200 ease-in-out peer-hover:opacity-100 dark:peer-hover:opacity-100 opacity-0 absolute left-7 z-50 rounded-md border-popover border bg-popover px-3 py-2 text-popover-foreground shadow-md outline-none`}
+        className={`transition delay-500 duration-200 ease-in-out peer-hover:opacity-100 dark:peer-hover:opacity-100 opacity-0 absolute left-7 z-50 rounded-lg border bg-background px-3 py-2 text-popover-foreground shadow-md `}
       >
         {value}
       </div>

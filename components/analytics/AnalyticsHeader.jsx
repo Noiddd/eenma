@@ -19,8 +19,7 @@ import { Card } from "../ui/card";
 
 export default function AnalyticsHeader() {
   return (
-    <div className="flex gap-2 items-center mb-3">
-      <div className="font-semibold text-lg">Analytics</div>
+    <div className="flex items-center">
       <DropdownMenu>
         <DropdownMenuTrigger>
           <div className="border bg-card text-card-foreground shadow-sm w-full px-3 py-2 rounded-lg text-xs flex gap-2 items-center">

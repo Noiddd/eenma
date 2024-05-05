@@ -8,57 +8,56 @@ import {
   Tooltip,
   ResponsiveContainer,
   YAxis,
+  CartesianGrid,
 } from "recharts";
 import TrafficSourceLabel from "../labels/TrafficSourceLabel";
 import { TrafficToolTip } from "../tooltip/TrafficToolTip";
-
 const data = [
   {
-    name: "External Traffic Source",
-    uv: 1100,
+    name: "Channel pages",
+    uv: 4000,
+    pv: 2400,
+    amt: 2400,
   },
   {
-    name: "Hashtag Pages",
-    uv: 500,
-  },
-  {
-    name: "Notifications",
-    uv: 2200,
-  },
-  {
-    name: "Direct or Unknown",
-    uv: 500,
+    name: "Browse features",
+    uv: 3450,
+    pv: 1398,
+    amt: 2210,
   },
   {
     name: "Youtube search",
-    uv: 4000,
+    uv: 2000,
+    pv: 9800,
+    amt: 2290,
   },
   {
     name: "End screens",
-    uv: 6780,
+    uv: 2780,
+    pv: 3908,
+    amt: 2000,
   },
   {
     name: "YouTube Suggested",
-    uv: 5890,
+    uv: 1890,
+    pv: 4800,
+    amt: 2181,
   },
   {
     name: "Shorts Feed",
-    uv: 3390,
+    uv: 2390,
+    pv: 3800,
+    amt: 2500,
   },
 ];
 
 export default function TrafficSourceChart() {
   return (
-    <div className="h-96 flex flex-col gap-5 rounded-2xl border bg-card text-card-foreground shadow-sm pt-6 w-2/6">
-      <div className="text-sm font-semibold px-6 flex gap-2 items-center">
-        Traffic Source
-      </div>
+    <Card className="h-full flex flex-col gap-3">
+      <div className="text-xs font-semibold px-6">Traffic Source</div>
 
       <ResponsiveContainer width="100%" height="80%">
         <BarChart
-          layout="vertical"
-          width={500}
-          height={500}
           data={data}
           margin={{
             top: 0,
@@ -66,29 +65,28 @@ export default function TrafficSourceChart() {
             bottom: 0,
             left: 25,
           }}
+          barSize={30}
+          layout="vertical"
         >
-          <defs>
-            <linearGradient id="traffic" x1="1" y1="0" x2="0" y2="0">
-              <stop offset="100%" stopColor="#0d766f" stopOpacity={1} />
-              <stop offset="100%" stopColor="#0d766f" stopOpacity={0} />
-
-              {/* green-#166d48
-              blue - #0047AB
-              
-              */}
-            </linearGradient>
-          </defs>
           <XAxis hide type="number" />
           <YAxis hide dataKey="name" type="category" />
           <Tooltip cursor={false} content={<TrafficToolTip />} />
           <Bar
             dataKey="uv"
-            fill="url(#traffic)"
+            fill="#F5F5F5"
             radius={[6, 6, 6, 6]}
+            // label={{
+            //   position: "insideLeft",
+            //   fill: "#7F7F7F",
+            //   dataKey: "name",
+            //   fontSize: "13",
+            //   fontWeight: "",
+            //   fontStyle: "",
+            // }}
             label={<TrafficSourceLabel />}
           />
         </BarChart>
       </ResponsiveContainer>
-    </div>
+    </Card>
   );
 }
