@@ -19,10 +19,10 @@ import { Card } from "../ui/card";
 
 export default function AnalyticsHeader() {
   return (
-    <div className="flex items-center">
+    <div className="flex items-end">
       <DropdownMenu>
         <DropdownMenuTrigger>
-          <div className="border bg-card text-card-foreground shadow-sm w-full px-3 py-2 rounded-lg text-xs flex gap-2 items-center">
+          <div className="border bg-card text-card-foreground shadow-sm w-full px-3 py-2 rounded-lg text-xs flex gap-2 items-center hover:bg-accent hover:text-accent-foreground">
             Last 7 days
             <ChevronDown className="w-3.5 h-3.5" />
           </div>

@@ -10,6 +10,7 @@ import {
   Mail,
   Image,
   PencilRuler,
+  Tag,
 } from "lucide-react";
 
 export default function NavLink({ href, value, ...props }) {
@@ -26,6 +27,15 @@ export default function NavLink({ href, value, ...props }) {
       <Link href={href} className="peer">
         {value == "Analytics" && (
           <LayoutDashboard
+            strokeWidth={2.5}
+            className={`h-4 w-4 hover:text-black dark:hover:text-white cursor-default ${
+              isActive ? "dark:text-white text-black" : "text-muted-foreground"
+            }`}
+          />
+        )}
+
+        {value == "Label" && (
+          <Tag
             strokeWidth={2.5}
             className={`h-4 w-4 hover:text-black dark:hover:text-white cursor-default ${
               isActive ? "dark:text-white text-black" : "text-muted-foreground"

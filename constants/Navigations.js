@@ -4,11 +4,15 @@ export const navigations = [
     href: "/platform/analytics",
   },
   {
-    value: "Tools",
-    href: "/platform/tools",
-  },
-  {
     value: "Content",
     href: "/platform/content",
   },
+  // {
+  //   value: "Tools",
+  //   href: "/platform/tools",
+  // },
+  // {
+  //   value: "Label",
+  //   href: "/platform/label",
+  // },
 ];
